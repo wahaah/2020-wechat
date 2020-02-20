@@ -1,0 +1,41 @@
+{
+  "pages":[
+    "pages/toDoList/toDoList",
+    "pages/news/news",
+    "pages/index/index",
+    "pages/logs/logs"
+  ],
+  "window":{
+    "backgroundTextStyle":"dark",
+    "navigationBarBackgroundColor": "#CEE8F7",
+    "navigationBarTitleText": "2020",
+    "navigationBarTextStyle":"black",
+    "enablePullDownRefresh":true
+  },
+  "tabBar": {
+    "color":"#000",
+    "selectedColor":"#000",
+    "backgroundColor":"#fff",
+    "list": [{
+      "pagePath": "pages/index/index",
+      "text": "首页",
+      "iconPath": "images/home.png",
+      "selectedIconPath": "images/home-actived.png"
+    },{
+      "pagePath": "pages/logs/logs",
+      "text": "日志",
+      "iconPath": "images/logs.png",
+      "selectedIconPath": "images/logs-active.png"
+    },{
+      "pagePath": "pages/news/news",
+      "text": "新闻",
+      "iconPath": "images/board.png",
+      "selectedIconPath": "images/board-actived.png"
+    },{
+      "pagePath": "pages/toDoList/toDoList",
+      "text": "记事列表",
+      "iconPath": "images/todos.png",
+      "selectedIconPath": "images/todos-active.png"
+    }]
+  }
+}

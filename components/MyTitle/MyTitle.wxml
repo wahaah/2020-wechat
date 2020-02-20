@@ -1,0 +1,2 @@
+<!--components/MyTitle/MyTitle.wxml-->
+<text>我是公共头部组件</text>

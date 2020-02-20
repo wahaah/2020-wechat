@@ -1,0 +1,16 @@
+// var getDate = function (time){
+//   // var qdd = new Date()
+//   var gDate = function (time) {
+//     var year = time.getFullYear();
+//     var month = (time.getMonth() + 1).toString().padStart(2, '0');
+//     var day = time.getDate().toString().padStart(2, '0');
+//     var hh = time.getHours().toString().padStart(2, '0');
+//     var mm = time.getMinutes().toString().padStart(2, '0');
+//     var ss = time.getSeconds().toString().padStart(2, '0');
+//    // return `${year}-${month}-${day} ${hh}:${mm}:${ss}`;
+//    return year+"-"+month+"-"+day+" "+hh+":"+mm+":"+ss;
+//   }
+//   return gDate(time)
+  
+// }
+// module.exports.getDate = getDate;

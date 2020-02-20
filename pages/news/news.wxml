@@ -1,0 +1,130 @@
+<!-- <wxs src="../api/time.wxs" module="time"></wxs> -->
+<wxs src="../api/api.wxs" module="api"></wxs>
+<view class="con">
+    <swiper class="" autoplay indicator-dots indicator-color="rgba(0, 0, 0, .3)" circular>
+        <swiper-item class="" item-id="">
+            <image  src="../../uploads/2.jpg" mode="scaleToFill"></image>
+        </swiper-item>
+        <swiper-item class="" item-id="">
+            <image  src="../../uploads/1.jpg" mode="scaleToFill"></image>
+        </swiper-item>
+        <swiper-item class="" item-id="">
+            <image  src="../../uploads/3.jpg" mode="scaleToFill"></image>
+        </swiper-item>
+    </swiper>
+    <view class="main">
+        <!-- 公共头部 -->
+        <!-- <MyTitle></MyTitle> -->
+        <!-- 导航 -->
+        <view class="nav_wrap">
+            <scroll-view class="nav" scroll-x>
+                <!-- 小程序中的事件绑定用bindtap -->
+                <view bindtap='currentNav' data-index="{{index}}" class="nav_item {{index==currentIndex?'active':''}}" wx:for="{{navList}}" wx:key="index">
+                    <text>{{item.text}}</text>
+                </view>
+            </scroll-view>
+        </view>
+    </view>
+    <!-- ========================All====================================== -->
+    <view class="tabPage">
+        <view class="china" hidden="{{currentIndex != 0}}">
+        <!-- {{api.formatTime(timestamp1)}}--- -->
+            <text class="" style="font-size:30rpx">数据更新于：{{nowtime}}</text>
+            <view class="all">
+                <view class="box">
+                    <view class="sort" wx:for="{{['确诊','疑似','死亡','治愈']}}" wx:key="{{index}}">
+                        {{item}}
+                    </view>
+                </view>
+                <view class="box">
+                    <view class="sort" wx:for="{{newResList}}" wx:key="{{index}}">{{item}}</view>
+                </view>
+            </view>
+            <view class="container">
+                <ec-canvas id="mychart-dom-line" canvas-id="mychart-line" ec="{{ ec }}"></ec-canvas>
+            </view>
+        </view>
+
+        <!-- +++++++++++++++++++++++local++++++++++++++++++++++++++++++ -->
+        <view class="local" hidden="{{currentIndex != 1}}">
+            <view style='font-size:36rpx;margin:20rpx 0;'>选择你所在的省份（默认陕西）</view>
+            <view class="search">
+                <scroll-view class="slide" scroll-y>
+                    <!-- 小程序中的事件绑定用bindtap -->
+                    <view bindtap='selectPorvince' data-name="{{item.name}}"  class="slideItem {{cityName==item.name?'light':''}}" wx:for="{{provinceList}}" wx:key="index" >
+                        {{item.name}}
+                    </view>
+                </scroll-view>
+            </view>
+            <view style='font-size:36rpx;margin:20rpx 0;'>{{cityName}}疫情：</view>
+            <block style="display:inline-block" class="" wx:for="{{['城市名','确诊','治愈','死亡']}}" wx:key="{{index}}">
+                <view class='localTitle'>{{item}}</view>
+            </block>
+                <view wx:for="{{localList.cities}}" wx:key="index">
+                    <view wx:if="{{(index+1) % 2 != 0}}" >
+                          <text class="col">{{item.cityName}} </text>
+                           <text class="col">{{item.confirmedCount}} </text>
+                           <text class="col">{{item.curedCount}}  </text>
+                           <text class="col">{{item.deadCount}}</text>
+                    </view>
+                    <view wx:if="{{(index+1) % 2 == 0}}" class='odd'>
+                          <!-- {{item.cityName}}  {{item.confirmedCount}} {{item.curedCount}}  {{item.deadCount}}                 -->
+                           <text class="col">{{item.cityName}} </text>
+                           <text class="col">{{item.confirmedCount}} </text>
+                           <text class="col">{{item.curedCount}}  </text>
+                           <text class="col">{{item.deadCount}}</text>
+                    </view>
+
+                     <!-- <view class="{{ (index+1) % 2 == 0 ? odd : even ;}}">
+                     </view> -->
+                    
+            
+                </view>
+        </view>
+        <!-- ====================预防========================================= -->
+        <view class="guard" hidden="{{currentIndex != 2}}">
+          <view style='font-size:34rpx;' wx:for="{{resList}}" wx:key="{{index}}">
+             <view class='bname'>{{item.note1}}</view>
+             <view class='bsrc'>{{item.note2}}</view>
+             <view class='bchuanbo'>{{item.note3}}</view>
+             <view class='bman'>{{item.remark1}}</view>
+             <view class='bdate'>{{item.remark2}}</view>
+             <view class='bhome'>{{item.remark3}}</view>
+          </view>
+        </view>
+        <!-- =======================近期新闻===================================== -->
+        <view class="recentNews" hidden="{{currentIndex != 3}}">
+  
+            <view class="newsbox" wx:for="{{newsList}}" wx:key="{{index}}">
+                <view class="top">
+                    <view class='icon' style='width:30px;height:30px;'>
+                        <image style='width:100%;' src="../../images/newsIcon.png"></image>
+                    </view>
+                    <view class="sty">
+                    </view>
+                      
+                </view>
+                <view class="bottom">
+                    <view class="header">
+                        <view class="title" style='font-weight:800;'>{{item.title}}</view>
+                        <view class="info">
+                                <text>发布时间：{{api.formatTime(item.pubDate)}}</text>
+                                <text style='margin-left:200rpx;display:inline-block'>省份：{{item.provinceName}}</text>
+                        </view>
+                    </view>  
+                    <view class="bodyCon">
+                        正文：{{item.summary}}
+                        <!-- <view class="sourceUrl">
+                            <navigation style="color:red;font-size:12px;">原网址：{{item.sourceUrl}}</navigation>
+                        </view>  -->
+                    </view>
+                    <text style='font-size:24rpx;'>来源： {{item.infoSource}}</text>
+                </view>
+                  
+                  
+                
+           
+        </view>
+    </view>
+    </view>
+</view>

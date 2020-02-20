@@ -1,0 +1,15 @@
+<!--logs.wxml-->
+<!-- 使用组件,在logs.json中
+   "usingComponents": {
+     //要使用组件的名称   //组建的路径、
+     "component-tag-name":"path"
+   }
+ -->
+ <view class="main">
+   <MyTitle></MyTitle>
+ </view>
+<view class="container log-list">
+  <block wx:for="{{logs}}" wx:for-item="log" wx:key="index">
+    <text class="log-item">{{index + 1}}. {{log}}</text>
+  </block>
+</view>

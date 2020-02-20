@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "查看启动日志",
+  "usingComponents": {
+    "MyTitle":"../../components/MyTitle/MyTitle"
+  }
+  
+}

@@ -1,0 +1,44 @@
+<wxs src="../api/api.wxs" module="api"></wxs>
+<view class="con">
+    <!-- <view>{{time}}</view>
+    <view></view> -->
+    <view class='title'>记事本</view>
+    <!-- <view class="blank"></view> -->
+    <view class='new'>
+        <input type='text' bindblur="changeModel" value="{{inputInfo}}" data-info="{{inputInfo}}"></input>
+        <input disabled type='button' value='Add' bindtap="addList"></input>
+        <!-- <button bindtap="addList">add</button> -->
+    </view>
+    <view class="flex" hover-class="none" hover-stop-propagation="false">
+        <view class="menu all {{isAll==1?'aborder':''}}" data-id='all' bindtap='clickAll'>All</view>
+        <view class="menu {{isAll==2?'fborder':''}}" data-id='done' bindtap='clickFinished'>finished</view>
+        <!-- <view class="menu">unfinished</view> -->
+    </view>
+    <view hidden="{{isAll != 1}}">
+    <checkbox-group  class="checkbox" data-id="{{index}}" data-boo="{{isDone}}" bindchange="checkboxChange">
+      <view class="all" wx:for="{{inputList}}" wx:key="index">
+       <!-- class="{{isDoneList.includes(index)?'underline':''}}" -->
+        <view class="check {{item.checked?'underline':''}}">
+            <checkbox value='{{index}}' checked="{{checkDoneList[index]==index?false:''}}"></checkbox>
+              <text>{{item.todoList}}</text>
+              <!-- {{index}}===={{isDoneList[index]}} -->
+            <text class='time'>{{api.formatTime(item.time)}}</text>
+        </view>
+      </view>
+    </checkbox-group>
+     <button class='done' bindtap='doneBtn'>done</button>
+    <button class='del' bindtap='delete'>delete</button>
+    </view>
+    <view hidden="{{isAll != 2}}"  >
+    <checkbox-group  class="checkbox"  bindchange="checkboxChange">
+      <view class="all" wx:for="{{inputList}}" wx:key="index">
+        <view class="check {{item.checked?'underline':''}}" hidden='{{!item.checked}}'>
+            <checkbox value='{{index}}' checked='{{!item.checked}}'></checkbox>
+              <text  >{{item.todoList}}</text>
+            <text class='time'>{{api.formatTime(item.time)}}</text>
+        </view>
+      </view> 
+    </checkbox-group>
+    </view>
+   
+</view>
